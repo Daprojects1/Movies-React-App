@@ -1,0 +1,63 @@
+.main-tbls{
+    width: 95vw;
+    max-width: 600px;
+    min-height:100px;
+    display: flex;
+    flex-direction: column;
+}
+
+.flexBod{
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   flex-direction: column;
+   gap: 50px;
+}
+@media screen and (min-width:700px) {
+    .flexBod{
+        flex-direction: row;
+    }
+    .list-group{
+       align-self: flex-start;
+    }
+}
+.headermain{
+    text-align: center;
+}
+h2{
+  margin-bottom: 30px;
+}
+.trone{
+    border-top: solid 1px rgb(148, 144, 144) ;
+    border-bottom: rgb(148, 144, 144) solid 2px;
+}
+.trone th{
+    padding: 10px 10px;
+}
+
+.btn:hover{
+    background-color: rgb(100, 20, 20);
+}
+
+img{
+    width: 25px;
+    height: 25px;
+}
+
+
+.Page{
+    align-self: center;
+}
+
+.icons{
+    color: rgb(172, 171, 171);
+}
+
+.bgColor{
+    color: black;
+}
+
+.clickable{
+    cursor: pointer;
+}
