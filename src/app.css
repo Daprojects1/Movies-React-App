@@ -6,6 +6,54 @@
     flex-direction: column;
 }
 
+.main-navs{
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.nav1{
+    transform: scale(1.5);
+    margin-right: 80px;
+}
+
+.moviesSpan a{
+    text-decoration: none;
+    color: black;
+}
+
+.moviesSpan a:hover{
+    color: blue;
+    text-decoration: underline;
+}
+.movie-form{
+    display: flex;
+    flex-direction: column;
+}
+
+.movie-form button{
+    width: 200px;
+    color: white;
+    background-color: blue;
+    border: none;
+    padding: 7px;
+    border-radius: 10px;
+    align-self: center;
+}
+h2{
+    margin-top: 20px;
+    text-align: center;
+}
+.mainnav{
+    display: flex;
+    font-size: 1.2rem;
+    list-style: none;
+}
+
+.ls{
+    font-size: 1.25rem;
+    text-decoration: none;
+}
 .flexBod{
     margin-top: 50px;
     display: flex;

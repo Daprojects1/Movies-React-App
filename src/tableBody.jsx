@@ -1,5 +1,6 @@
 import React from "react";
 import _ from "lodash"
+import { Link } from "react-router-dom";
 import "./app.css"
 
 class TableBody extends React.Component {
@@ -10,8 +11,20 @@ class TableBody extends React.Component {
     }
     showMoviesHere = () => {
         let { showMovies, columns } = this.props
-        return showMovies.map((item, index) => <tr key={index}>{columns.map((column, index) => <td key={index}>{this.showCell(item, column)}</td>)}
-        </tr>)
+        return showMovies.map((item, index) => <tr key={index}>{columns.map((column, index) => {
+            if (column.label === "Title") {
+                return (
+                    < td key={index} >
+                        <span className="moviesSpan">
+                            <Link to={`/movies/${item._id}`}>{this.showCell(item, column)}</Link>
+                        </span>
+                    </td>
+                )
+            } else {
+                return <td key={index}>{this.showCell(item, column)}</td>
+            }
+        })}
+        </tr >)
     }
     render() {
         return (
