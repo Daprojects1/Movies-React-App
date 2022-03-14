@@ -21,8 +21,9 @@ class TableBody extends React.Component {
                     </td>
                 )
             } else {
-                return <td key={index}>{this.showCell(item, column)}</td>
+
             }
+            return <td key={index}>{this.showCell(item, column)}</td>
         })}
         </tr >)
     }

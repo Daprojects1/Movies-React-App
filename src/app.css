@@ -12,9 +12,13 @@
     justify-content: center;
 }
 
-.nav1{
+.main-navs a{
+    color: grey;
+}
+.nav1 {
     transform: scale(1.5);
     margin-right: 80px;
+    color: blue;
 }
 
 .moviesSpan a{
@@ -109,3 +113,45 @@ img{
 .clickable{
     cursor: pointer;
 }
+
+.loginform{
+    margin: 50px auto;
+    width: 80vw;
+    max-width:450px;
+    border-radius: 10px;
+    border: 2px solid rgb(230, 221, 221);
+    padding: 60px;
+}
+
+.loginform h2{
+    margin-top: 0;
+}
+.form-group{
+    margin-bottom: 10px;
+}
+.form-check{
+    margin-bottom: 10px;
+}
+
+.red{
+    color: red;
+}
+
+.header-center{
+    display:flex;
+    flex-direction: column;
+}
+
+.header-center button{
+    width:fit-content;
+    align-self: center;
+    color: white;
+    margin-top: 40px;
+}
+
+.header-center a{
+    color: white;
+    text-decoration: none;
+
+}
+

@@ -1,6 +1,7 @@
 import React from "react";
 
-const Header = ({ count }) => {
+
+const Header = ({ count, addMovies }) => {
     return (
         <h2 className="headermain">Showing {count} movies in the database</h2>
     )

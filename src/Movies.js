@@ -8,7 +8,9 @@ import paginate from "./utilityFunctions/paginate";
 import ListGroup from "./listGroup";
 import Table from "./table";
 import NoMoviesText from "./noMoviesText";
+import { Link } from "react-router-dom";
 import _ from "lodash"
+
 
 
 class MoviePage extends React.Component {
@@ -62,7 +64,6 @@ class MoviePage extends React.Component {
         }
         return classes;
     }
-    // working on filter function
     filtered = (allMovies) => {
         let { currentGenre } = this.state
         return (currentGenre !== "All Genres") ? allMovies.filter(m => m.genre.name === currentGenre) : allMovies
@@ -84,30 +85,42 @@ class MoviePage extends React.Component {
         const movies = this.state.movies.filter(m => m._id !== item._id)
         this.setState({ movies })
     }
+    addMovie = (movie) => {
+        let movies = [...this.state.movies]
+        movies.push(movie)
+        this.setState({ movies })
+    }
     render() {
         let { genres, currentGenre, movies, sortColumn, pageSize, currentPage } = this.state;
         if (movies.length > 0) {
             return (
-                <div className="flexBod">
-                    <ListGroup onSelect={this.isItGenre}
-                        getGenres={genres}
-                        currentGenre={currentGenre}
-                        check={this.check} >
-                    </ListGroup>
-                    <div className="main-tbls">
-                        <Header count={this.filtered(movies).length} />
-                        <Table showMovies={this.showMovies()}
-                            onSort={this.sort}
-                            sortColumn={sortColumn}
-                            clickLikes={this.clickLikes}
-                            deleteMovie={this.deleteMovie}>
-                        </Table>
-                        <PageChange itemsCount={this.filtered(movies).length}
-                            pageSize={pageSize}
-                            onPageChange={this.pageChange}
-                            currentPage={currentPage}
-                            currentGenre={currentGenre} >
-                        </PageChange>
+                <div>
+                    <div className="header-center">
+                        <button className="btn btn-primary">
+                            <Link to={{ pathname: "/movies/new", state: { addMovie: this.addMovie } }} >New Movie</Link>
+                        </button>
+                    </div>
+                    <div className="flexBod">
+                        <ListGroup onSelect={this.isItGenre}
+                            getGenres={genres}
+                            currentGenre={currentGenre}
+                            check={this.check} >
+                        </ListGroup>
+                        <div className="main-tbls">
+                            <Header count={this.filtered(movies).length} />
+                            <Table showMovies={this.showMovies()}
+                                onSort={this.sort}
+                                sortColumn={sortColumn}
+                                clickLikes={this.clickLikes}
+                                deleteMovie={this.deleteMovie}>
+                            </Table>
+                            <PageChange itemsCount={this.filtered(movies).length}
+                                pageSize={pageSize}
+                                onPageChange={this.pageChange}
+                                currentPage={currentPage}
+                                currentGenre={currentGenre} >
+                            </PageChange>
+                        </div>
                     </div>
                 </div>
             )
