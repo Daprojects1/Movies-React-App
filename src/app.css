@@ -9,18 +9,23 @@
 .main-navs{
     padding: 20px;
     display: flex;
-    justify-content: center;
+    width: 90vw;
+    max-width: 700px;
+    margin: 0 auto;
+    text-align: center;
+    flex-direction: column;
 }
 
+.navbar{
+    padding: 20px;
+    font-size: 1.1rem;
+}
 .main-navs a{
     color: grey;
 }
 .nav1 {
     transform: scale(1.5);
-    margin-right: 80px;
-    color: blue;
 }
-
 .moviesSpan a{
     text-decoration: none;
     color: black;
@@ -146,12 +151,37 @@ img{
     width:fit-content;
     align-self: center;
     color: white;
-    margin-top: 40px;
 }
 
 .header-center a{
     color: white;
     text-decoration: none;
-
 }
 
+.inputHome{
+    display: inline-flex;
+    align-self: center;
+    margin-top: 20px;
+}
+
+.inputHome input{
+    width: 80vh;
+    padding: 7px;
+    max-width: 400px;
+}
+
+.inputHome input:focus{
+    outline: none;
+}
+
+@media screen and (min-width: 600px){
+    .main-navs{
+        flex-direction: row;
+        justify-content: center;
+    }
+    .nav1 {
+        transform: scale(1.5);
+        margin-right: 80px;
+        color: blue;
+    }
+}

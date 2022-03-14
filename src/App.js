@@ -8,7 +8,6 @@ import NotFound from "./notfound";
 import Form from "./movieform";
 import LoginForm from "./form";
 import RegisterForm from "./RegisterForm";
-import NewMovieForm from "./newMovieForm";
 
 class App extends React.Component {
 

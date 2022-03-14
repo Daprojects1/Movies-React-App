@@ -8,8 +8,9 @@ import paginate from "./utilityFunctions/paginate";
 import ListGroup from "./listGroup";
 import Table from "./table";
 import NoMoviesText from "./noMoviesText";
-import { Link } from "react-router-dom";
 import _ from "lodash"
+import SearchBox from "./searchBox";
+import NewMovieBtn from "./changeorAddMovieBtn";
 
 
 
@@ -25,7 +26,8 @@ class MoviePage extends React.Component {
             sortColumn: {
                 path: "title",
                 order: "asc"
-            }
+            },
+            searchValue: ""
         }
     }
     stylesech1 = {
@@ -50,12 +52,7 @@ class MoviePage extends React.Component {
         })
     }
     isItGenre = (name) => {
-        this.setState(() => {
-            return {
-                currentGenre: name
-            }
-        })
-        this.setState({ currentPage: 1 })
+        this.setState({ currentGenre: name, currentPage: 1, searchValue: "" })
     }
     check = (name, currentGenre) => {
         let classes = ""
@@ -64,8 +61,13 @@ class MoviePage extends React.Component {
         }
         return classes;
     }
+    reFilterMovies = (e) => {
+        let searchValue = e.target.value;
+        this.setState({ searchValue, currentGenre: null, currentPage: 1 });
+    }
     filtered = (allMovies) => {
         let { currentGenre } = this.state
+        if (currentGenre === null) return allMovies.filter(m => m.title.toLowerCase().startsWith(this.state.searchValue.toLowerCase()))
         return (currentGenre !== "All Genres") ? allMovies.filter(m => m.genre.name === currentGenre) : allMovies
     }
     sorted = (movies) => {
@@ -95,11 +97,6 @@ class MoviePage extends React.Component {
         if (movies.length > 0) {
             return (
                 <div>
-                    <div className="header-center">
-                        <button className="btn btn-primary">
-                            <Link to={{ pathname: "/movies/new", state: { addMovie: this.addMovie } }} >New Movie</Link>
-                        </button>
-                    </div>
                     <div className="flexBod">
                         <ListGroup onSelect={this.isItGenre}
                             getGenres={genres}
@@ -107,6 +104,8 @@ class MoviePage extends React.Component {
                             check={this.check} >
                         </ListGroup>
                         <div className="main-tbls">
+                            <NewMovieBtn />
+                            <SearchBox value={this.state.searchValue} reFilterMovies={this.reFilterMovies} />
                             <Header count={this.filtered(movies).length} />
                             <Table showMovies={this.showMovies()}
                                 onSort={this.sort}
