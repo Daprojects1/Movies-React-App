@@ -158,20 +158,42 @@ img{
     text-decoration: none;
 }
 
+.header-center a:hover {
+    color: white;
+}
+
 .inputHome{
     display: inline-flex;
     align-self: center;
-    margin-top: 20px;
+    margin: 20px 0;
 }
 
 .inputHome input{
     width: 80vh;
     padding: 7px;
     max-width: 400px;
+
 }
 
 .inputHome input:focus{
     outline: none;
+}
+
+.options-div{
+    display: flex;
+    flex-direction: column;
+}
+
+.options-div select{
+    border-color: lightgray;
+    padding: 5px;
+    margin-bottom: 7px;
+    border-radius: 4px;
+}
+
+.options-div select, .options-div select:focus,.options-div select:active {
+  outline: none;
+
 }
 
 @media screen and (min-width: 600px){

@@ -1,8 +1,8 @@
 import React from "react";
 import propTypes from 'prop-types';
-import createPagesArr from "./utilityFunctions/createPagesArr";
-import classCheck from "./utilityFunctions/classCheck";
-import "./app.css"
+import createPagesArr from "../utilityFunctions/createPagesArr";
+import classCheck from "../utilityFunctions/classCheck";
+
 
 const PageChange = ({ itemsCount, pageSize, currentPage, onPageChange }) => {
     let pagesCount = Math.ceil(itemsCount / pageSize)

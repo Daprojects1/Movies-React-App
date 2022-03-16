@@ -7,13 +7,18 @@ import Customers from "./customers";
 import NotFound from "./notfound";
 import Form from "./movieform";
 import LoginForm from "./form";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import RegisterForm from "./RegisterForm";
+
+
 
 class App extends React.Component {
 
     render() {
         return (
             <>
+                <ToastContainer />
                 <NavBar />
                 <Routes>
                     <Route path="/movies" element={<MoviePage />} />

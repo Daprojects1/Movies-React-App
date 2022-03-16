@@ -1,16 +1,16 @@
 import React from "react";
-import { getMovies } from "./services/fakeMovieService";
 import Header from "./Header"
-import "./app.css"
-import { getGenres } from "./services/fakeGenreService";
+import getSMovies, { delMovie } from "../services/movieServer";
+import { getSGenres } from "../services/genreServer";
 import PageChange from "./paginationComp";
-import paginate from "./utilityFunctions/paginate";
+import paginate from "../utilityFunctions/paginate";
 import ListGroup from "./listGroup";
 import Table from "./table";
 import NoMoviesText from "./noMoviesText";
 import _ from "lodash"
 import SearchBox from "./searchBox";
 import NewMovieBtn from "./changeorAddMovieBtn";
+
 
 
 
@@ -33,9 +33,11 @@ class MoviePage extends React.Component {
     stylesech1 = {
         margin: "30px",
     }
-    componentDidMount() {
-        let genres = [{ name: "All Genres", id: "a24B" }, ...getGenres()]
-        this.setState({ movies: getMovies(), genres: genres })
+    async componentDidMount() {
+        let grabMovies = await getSMovies()
+        let grabGenres = await getSGenres()
+        let genres = [{ name: "All Genres", id: "a24B" }, ...grabGenres]
+        this.setState({ movies: grabMovies, genres: genres })
     }
     clickLikes = (movie) => {
         const movies = [...this.state.movies]
@@ -83,14 +85,12 @@ class MoviePage extends React.Component {
     sort = (sortColumn) => {
         this.setState({ sortColumn })
     }
-    deleteMovie = (item) => {
+    deleteMovie = async (item) => {
+        const initialMovies = JSON.parse(JSON.stringify(this.state.movies));
         const movies = this.state.movies.filter(m => m._id !== item._id)
         this.setState({ movies })
-    }
-    addMovie = (movie) => {
-        let movies = [...this.state.movies]
-        movies.push(movie)
-        this.setState({ movies })
+        let final = await delMovie(item._id)
+        return (final) ? console.log("done") : this.setState({ movies: initialMovies })
     }
     render() {
         let { genres, currentGenre, movies, sortColumn, pageSize, currentPage } = this.state;

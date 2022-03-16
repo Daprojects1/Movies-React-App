@@ -1,5 +1,4 @@
 import React from "react"
-import "./app.css"
 import TableHeader from "./tableHeader";
 import TableBody from "./tableBody";
 import Likes from "./likeComp";

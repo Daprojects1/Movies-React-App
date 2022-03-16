@@ -1,6 +1,7 @@
 import React from "react";
 import Joi from "joi-browser"
 import Input from "./input";
+import Select from "./select";
 
 
 class FormComponent extends React.Component {
@@ -19,6 +20,7 @@ class FormComponent extends React.Component {
         return error;
     }
     validateProperty = ({ target }) => {
+        if (!target.name) target.name = "genreId"
         const obj = { [target.name]: target.value };
         const schema = { [target.name]: this.schema[target.name] }
         const result = Joi.validate(obj, schema);
@@ -31,7 +33,7 @@ class FormComponent extends React.Component {
         if (errors) return
         this.doSubmit()
     }
-    handleChange = (e) => {
+    handleChange = e => {
         let errors = { ...this.state.errors };
         let errorMessage = this.validateProperty(e)
         if (errorMessage) errors[e.target.name] = errorMessage;
@@ -41,7 +43,7 @@ class FormComponent extends React.Component {
         data[e.target.name] = e.target.value;
         this.setState({ data, errors })
     }
-    renderBtn = (name) => {
+    renderBtn = name => {
         return <button type="submit" disabled={this.validate()} className="btn btn-primary">{name}</button>
     }
     renderInput = (title, name, type, value) => {
@@ -56,6 +58,18 @@ class FormComponent extends React.Component {
                 errors={errors}
             />
 
+        )
+    }
+    renderSelect = (title, name, options) => {
+        const { error, data } = this.state
+        return (
+            <Select
+                title={title}
+                value={data[name]}
+                options={options}
+                error={error}
+                handleChange={this.handleChange}
+            />
         )
     }
 
