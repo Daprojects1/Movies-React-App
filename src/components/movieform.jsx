@@ -3,12 +3,8 @@ import { useNavigate, useLocation } from "react-router-dom";
 import FormComponent from "./reusableForm";
 import Joi from "joi-browser";
 import { getSGenres } from "../services/genreServer";
-import { getSMovie, putMovie, saveMovie, postMovie } from "../services/movieServer";
+import { getSMovie, saveMovie } from "../services/movieServer";
 import NotFound from "./notfound";
-
-
-
-
 
 class Form extends FormComponent {
     state = {
@@ -73,10 +69,10 @@ class Form extends FormComponent {
 }
 
 const WithNavigate = (props) => {
-    let location = useLocation();
+    let location = useLocation()
     let navigate = useNavigate()
     let params = props.params().index
     return <Form navigate={navigate} searchParams={params} location={location} />
 }
 
-export default WithNavigate
+export default WithNavigate;

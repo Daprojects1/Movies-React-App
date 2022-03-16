@@ -1,6 +1,8 @@
 import React from "react";
 import Joi from "joi-browser";
+import { useNavigate } from "react-router-dom";
 import FormComponent from "./reusableForm";
+import { login } from "../services/authService";
 
 class LoginForm extends FormComponent {
     state = {
@@ -14,8 +16,19 @@ class LoginForm extends FormComponent {
         username: Joi.string().required().label("Username"),
         password: Joi.string().required().label("Password")
     }
-    doSubmit = () => {
-        console.log("submitted")
+    doSubmit = async () => {
+        const { data } = this.state;
+        try {
+            const { data: jwt } = await login(data.username, data.password)
+            localStorage.setItem("token", jwt);
+            this.props.navigate("/", { replace: "true" })
+        } catch (error) {
+            if (error.response && error.response.status === 404) {
+                let errors = { ...this.state.errors }
+                errors.username = "Invalid email or password";
+                this.setState({ errors })
+            }
+        }
     }
     render() {
         const { data } = this.state
@@ -34,4 +47,9 @@ class LoginForm extends FormComponent {
     }
 }
 
-export default LoginForm;
+const WithRouter = (props) => {
+    let navigate = useNavigate()
+    return <LoginForm navigate={navigate} />
+}
+
+export default WithRouter;
