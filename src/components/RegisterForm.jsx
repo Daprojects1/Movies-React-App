@@ -1,8 +1,7 @@
-import Joi, { errors } from "joi-browser";
+import Joi from "joi-browser";
 import React from "react";
 import FormComponent from "./reusableForm";
 import * as userService from "../services/userService"
-import { useNavigate } from "react-router";
 
 class RegisterForm extends FormComponent {
     state = {
@@ -22,7 +21,7 @@ class RegisterForm extends FormComponent {
         try {
             const response = await userService.registerUser(this.state.data);
             localStorage.setItem("token", response.headers["x-auth-token"])
-            this.props.nav("/", { replace: "true" })
+            window.location = "/"
         } catch (error) {
             if (error.response && error.response.status === 400) {
                 let errors = { ...this.state.errors }
@@ -46,9 +45,5 @@ class RegisterForm extends FormComponent {
     }
 }
 
-function WithRoutes(props) {
-    let navigate = useNavigate();
-    return <RegisterForm nav={navigate} />;
-}
 
-export default WithRoutes;
+export default RegisterForm;

@@ -1,5 +1,4 @@
 import http from "./httpServices/httpService"
-import { toast } from "react-toastify"
 import { apiUrl } from "../config.json"
 
 

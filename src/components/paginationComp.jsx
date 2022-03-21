@@ -12,7 +12,7 @@ const PageChange = ({ itemsCount, pageSize, currentPage, onPageChange }) => {
         <nav aria-label="Page navigation" className="Page">
             <ul className="pagination" >
                 {pages.map(page => {
-                    return <li key={page} className={`page-item ${classCheck(page, currentPage)} clickable`} ><a className="page-link" onClick={() => onPageChange(page)}>{page}</a></li >
+                    return <li key={page} className={`page-item ${classCheck(page, currentPage)} clickable`} ><button className="page-link" href="#" onClick={() => onPageChange(page)}>{page}</button></li >
                 })
                 }
 
