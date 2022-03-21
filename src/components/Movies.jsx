@@ -90,9 +90,10 @@ class MoviePage extends React.Component {
         const movies = this.state.movies.filter(m => m._id !== item._id)
         this.setState({ movies })
         let final = await delMovie(item._id)
-        return (final) ? console.log("done") : this.setState({ movies: initialMovies })
+        return (!final) ? this.setState({ movies: initialMovies }) : null;
     }
     render() {
+        const { user } = this.props
         let { genres, currentGenre, movies, sortColumn, pageSize, currentPage } = this.state;
         if (movies.length > 0) {
             return (
@@ -104,7 +105,7 @@ class MoviePage extends React.Component {
                             check={this.check} >
                         </ListGroup>
                         <div className="main-tbls">
-                            <NewMovieBtn />
+                            {user && <NewMovieBtn />}
                             <SearchBox value={this.state.searchValue} reFilterMovies={this.reFilterMovies} />
                             <Header count={this.filtered(movies).length} />
                             <Table showMovies={this.showMovies()}
