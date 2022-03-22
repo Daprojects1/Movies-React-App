@@ -17,7 +17,7 @@ class Table extends React.Component {
         { path: "numberInStock", label: "Stock" },
         { path: "dailyRentalRate", label: "Rate" },
         { content: (movie) => <Likes liked={movie.liked} click={() => this.props.clickLikes(movie)}></Likes> },
-        { content: (movie) => <button onClick={() => this.props.deleteMovie(movie)} style={this.stylebtn} className="btn clickable">Delete</button> }
+        (this.props.user) ? { content: (movie) => <button onClick={() => this.props.deleteMovie(movie)} style={this.stylebtn} className="btn clickable">Delete</button> } : {}
     ]
 
     render() {

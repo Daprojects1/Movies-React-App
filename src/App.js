@@ -28,9 +28,6 @@ class App extends React.Component {
         this.setState({ user })
         this.setState({ currentLocation: { ...history } })
     }
-    returnToLocation() {
-        return null;
-    }
     returnPage = () => {
         return <LoginForm  {...this.props} history={this.state.currentLocation} user={this.state.user} />
     }

@@ -109,6 +109,7 @@ class MoviePage extends React.Component {
                             <SearchBox value={this.state.searchValue} reFilterMovies={this.reFilterMovies} />
                             <Header count={this.filtered(movies).length} />
                             <Table showMovies={this.showMovies()}
+                                user={user}
                                 onSort={this.sort}
                                 sortColumn={sortColumn}
                                 clickLikes={this.clickLikes}
