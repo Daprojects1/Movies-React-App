@@ -26,7 +26,7 @@ class LoginForm extends FormComponent {
             await auth.login(data.username, data.password)
             window.location = (pathname) ? pathname : "/"
         } catch (error) {
-            if (error.response && error.response.status === 404) {
+            if (error.response && error.response.status === 400) {
                 let errors = { ...this.state.errors }
                 errors.username = "Invalid email or password";
                 this.setState({ errors })
@@ -34,7 +34,6 @@ class LoginForm extends FormComponent {
         }
     }
     render() {
-        console.log(this.props)
         const { data } = this.state
         if (this.props.user) return <Navigate replace to="/" />
         return (
