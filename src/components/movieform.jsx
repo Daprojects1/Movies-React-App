@@ -69,7 +69,6 @@ class Form extends FormComponent {
 }
 
 const WithNavigate = (props) => {
-    console.log(props)
     let navigate = useNavigate()
     let params = props.useParams().index
     return <Form navigate={navigate} searchParams={params} />

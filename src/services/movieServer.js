@@ -39,7 +39,6 @@ export const saveMovie = async (obj) => {
         if (obj._id) {
             const body = { ...obj }
             delete body._id;
-            console.log(body)
             return await http.put(`${apiUrl}/movies/${obj._id}`, body)
         } else {
             return await http.post(`${apiUrl}/movies`, obj)
