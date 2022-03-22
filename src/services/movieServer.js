@@ -17,6 +17,7 @@ export const getSMovie = async (id) => {
         if (error.response && error.response.status === 404)
             toast.error("Movie does not exist")
 
+        else toast.error("Unable to proceess your request")
         return null
     }
 
@@ -27,9 +28,9 @@ export const delMovie = async (id) => {
         return await http.delete(`${apiUrl}/movies/${id}`)
     } catch (error) {
         if (error.response && error.response.status === 404)
-            console.log("failed")
-        toast.error("Movie does not exist")
+            toast.error("Movie does not exist")
 
+        else toast.error("Unable to process your request")
         return null
     }
 }
@@ -46,6 +47,8 @@ export const saveMovie = async (obj) => {
     } catch (error) {
         if (error.response && error.response.status === 404)
             toast.error("Movie does not exist, Please refresh the page")
+
+        else toast.error("Unable to proceess your request")
 
         return null
     }

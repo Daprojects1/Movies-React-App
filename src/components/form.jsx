@@ -1,7 +1,10 @@
 import React from "react";
 import Joi from "joi-browser";
-import FormComponent from "./reusableForm";
 import auth from "../services/authService";
+import { Navigate } from "react-router-dom";
+import FormComponent from "./reusableForm";
+
+
 
 
 class LoginForm extends FormComponent {
@@ -17,10 +20,11 @@ class LoginForm extends FormComponent {
         password: Joi.string().required().label("Password")
     }
     doSubmit = async () => {
+        const { pathname } = this.props.location
         const { data } = this.state;
         try {
             await auth.login(data.username, data.password)
-            window.location = "/"
+            window.location = (pathname) ? pathname : "/"
         } catch (error) {
             if (error.response && error.response.status === 404) {
                 let errors = { ...this.state.errors }
@@ -30,7 +34,9 @@ class LoginForm extends FormComponent {
         }
     }
     render() {
+        console.log(this.props)
         const { data } = this.state
+        if (this.props.user) return <Navigate replace to="/" />
         return (
             <form noValidate className="loginform" onSubmit={this.handleSubmit}>
                 <h2>Log In</h2>
