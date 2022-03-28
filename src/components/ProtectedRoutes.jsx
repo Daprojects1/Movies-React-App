@@ -5,7 +5,7 @@ import { Navigate, Route } from "react-router";
 const ProtectedRoutes = ({ user, Element, ...rest }) => {
     if (!user) {
         return (
-            <Navigate replace to="loginform" />
+            <Route element={<Navigate replace to="loginform" />} />
         )
     }
     return (

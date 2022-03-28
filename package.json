@@ -27,7 +27,9 @@
     "react-router-dom": "^6.2.2",
     "react-scripts": "^3.0.1",
     "react-toastify": "^8.2.0",
-    "web-vitals": "^2.1.4"
+    "serve-static": "^1.15.0",
+    "web-vitals": "^2.1.4",
+    "yarn": "^1.22.18"
   },
   "scripts": {
     "start": "react-scripts --openssl-legacy-provider start",

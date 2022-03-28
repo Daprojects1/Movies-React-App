@@ -8,12 +8,13 @@ import Rentals from "./components/rentals.jsx";
 import Customers from "./components/customers";
 import NotFound from "./components/notfound";
 import Form from "./components/movieform";
-import LoginForm from "./components/form";
+import LoginForm from "./components/loginForm";
 import RegisterForm from "./components/RegisterForm";
 import Logout from "./components/logout";
 import auth from "./services/authService"
 import { createBrowserHistory } from "history";
 import "./app.css"
+import ProtectedRoutes from "./components/ProtectedRoutes";
 
 
 
@@ -26,10 +27,9 @@ class App extends React.Component {
         const user = auth.getUser();
         const history = createBrowserHistory()
         this.setState({ user })
-        this.setState({ currentLocation: { ...history } })
     }
     returnPage = () => {
-        return <LoginForm  {...this.props} history={this.state.currentLocation} user={this.state.user} />
+        return <LoginForm  {...this.props} user={this.state.user} />
     }
     render() {
         let { user } = this.state
